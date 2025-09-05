@@ -1,7 +1,7 @@
 import { useState } from "react"
 import type { Starship } from "../../types/starship.dto"
-import { StarshipManufacturerSelect } from "./starship-manufacturer-select"
-import { StarshipItem } from "./starship-item"
+import { StarshipManufacturerSelect } from "./starshipManufacturerSelect"
+import { StarshipItem } from "./starshipItem"
 
 export const StarshipList: React.FC<{ starships: Starship[] }> = ({ starships = [] }) => {
   const [selectedManufacturer, setSelectedManufacturer] = useState<string>("All")

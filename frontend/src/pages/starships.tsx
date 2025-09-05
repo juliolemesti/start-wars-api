@@ -1,9 +1,17 @@
 import type React from 'react'
 import type { Starship } from '../types/starship.dto'
-import { StarshipList } from '../components/starship/startship-list'
+import { StarshipList } from '../components/starship/starshipList'
+import { useFetchStarships } from '../hooks/useFetchStarships'
+import { useEffect } from 'react'
 
 export const StarshipsPage: React.FC = () => {
-    return (
+  const { starships, fetchStarships } = useFetchStarships()
+
+  useEffect(() => {
+    fetchStarships()
+  }, [fetchStarships])
+
+  return (
     <div className='max-w-[1200px] mx-auto px-4'>
       <h1 className='text-3xl font-bold underline mt-10 mb-10'>Starships</h1>
 
@@ -12,31 +20,31 @@ export const StarshipsPage: React.FC = () => {
   )
 }
 
-// Mock data for demonstration
-const starships: Starship[] = [
-  {
-    id: 1,
-    name: "Millennium Falcon",
-    model: "YT-1300",
-    manufacturer: "Corellian Engineering Corporation",
-    starshipClass: "Light freighter",
-    costInCredits: "100000"
-  },
-  {
-    id: 2,
-    name: "X-wing",
-    model: "T-65B",
-    manufacturer: "Incom Corporation",
-    starshipClass: "Starfighter",
-    costInCredits: "149999"
-  },
-  {
-    id: 3,
-    name: "TIE Fighter",
-    model: "Twin Ion Engine",
-    manufacturer: "Sienar Fleet Systems",
-    starshipClass: "Starfighter",
-    costInCredits: "75000"
-  }
-  // ...add more starships as needed
-]
+// // Mock data for demonstration
+// const starships: Starship[] = [
+//   {
+//     id: 1,
+//     name: "Millennium Falcon",
+//     model: "YT-1300",
+//     manufacturer: "Corellian Engineering Corporation",
+//     starshipClass: "Light freighter",
+//     costInCredits: "100000"
+//   },
+//   {
+//     id: 2,
+//     name: "X-wing",
+//     model: "T-65B",
+//     manufacturer: "Incom Corporation",
+//     starshipClass: "Starfighter",
+//     costInCredits: "149999"
+//   },
+//   {
+//     id: 3,
+//     name: "TIE Fighter",
+//     model: "Twin Ion Engine",
+//     manufacturer: "Sienar Fleet Systems",
+//     starshipClass: "Starfighter",
+//     costInCredits: "75000"
+//   }
+//   // ...add more starships as needed
+// ]
