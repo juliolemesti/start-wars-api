@@ -3,7 +3,10 @@ import type { Starship } from "../../types/starship.dto"
 import { StarshipManufacturerSelect } from "./starshipManufacturerSelect"
 import { StarshipItem } from "./starshipItem"
 
-export const StarshipList: React.FC<{ starships: Starship[] }> = ({ starships = [] }) => {
+interface StarshipListProps {
+  starships: Starship[] | undefined
+}
+export const StarshipList: React.FC<StarshipListProps> = ({ starships = [] }) => {
   const [selectedManufacturer, setSelectedManufacturer] = useState<string>("All")
 
   // Filter starships by manufacturer

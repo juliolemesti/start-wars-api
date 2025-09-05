@@ -1,16 +1,26 @@
-import type React from 'react'
-import { StarshipList } from '../components/starship/starshipList'
-import { useFetchStarships } from '../hooks/useFetchStarships'
-import { useEffect } from 'react'
-import { useAuthContext } from '../context/AuthContext'
+import { StarshipList } from "../components/starship/starshipList"
+import { useAuthContext } from "../context/AuthContext"
+import { useFetchStarships } from "../hooks/useFetchStarships"
+import { useEffect } from "react"
 
 export const StarshipsPage: React.FC = () => {
-  const { starships, fetchStarships } = useFetchStarships()
+  const { starships, loading, error, fetchStarships } = useFetchStarships()
   const { logout } = useAuthContext()
 
   useEffect(() => {
     fetchStarships()
   }, [fetchStarships])
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen gap-2">
+        <div className="animate-spin rounded-full h-8 w-8 border-4 border-gray-300 border-t-blue-500" />
+        <span className="text-gray-500 text-base">Fetching starships...</span>
+      </div>
+    )
+  }
+
+  if (error) return <p>Error: {error}</p>
 
   return (
     <div>
