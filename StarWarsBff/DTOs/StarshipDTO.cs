@@ -9,3 +9,8 @@ public class StarshipDto
   public string StarshipClass { get; set; } = string.Empty;
   public string CostInCredits { get; set; } = string.Empty;
 }
+
+public class StarshipListRequest
+{
+  public string Manufacturer { get; set; } = string.Empty;
+}

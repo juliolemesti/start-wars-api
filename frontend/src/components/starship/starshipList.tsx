@@ -29,7 +29,7 @@ export const StarshipList: React.FC<{ starships: Starship[] }> = ({ starships = 
             <th className="border px-4 py-2 text-left">Model</th>
             <th className="border px-4 py-2 text-left">Manufacturer</th>
             <th className="border px-4 py-2 text-left">Class</th>
-            <th className="border px-4 py-2 text-left">Cost in Credits</th>
+            <th className="border px-4 py-2 text-right">Cost in Credits</th>
           </tr>
         </thead>
         <tbody>
