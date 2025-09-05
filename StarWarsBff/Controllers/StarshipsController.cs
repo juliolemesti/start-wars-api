@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StarWarsBff.Dtos;
 using StarWarsBff.Services;
@@ -6,6 +7,7 @@ namespace StarWarsBff.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class StarshipsController : ControllerBase
 {
     private readonly IStarWarsService _starWarsService;

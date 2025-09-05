@@ -1,5 +1,6 @@
 using StarWarsBff.Services;
 using StarWarsBff.Clients;
+using StarWarsBff.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,9 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Add JWT Authentication
+builder.Services.AddJwtAuthentication(builder.Configuration);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,6 +37,9 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseCors("AllowFrontend");
 app.MapControllers();
