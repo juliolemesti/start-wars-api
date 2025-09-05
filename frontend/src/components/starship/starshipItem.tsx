@@ -7,7 +7,7 @@ export const StarshipItem: React.FC<{ starship: Starship }> = ({ starship }) => 
       <td className="border px-4 py-2">{starship.model}</td>
       <td className="border px-4 py-2">{starship.manufacturer}</td>
       <td className="border px-4 py-2">{starship.starshipClass}</td>
-      <td className="border px-4 py-2">{Number(starship.costInCredits).toLocaleString("en-US")}</td>
+      <td className="border px-4 py-2">{starship.costInCredits === 'unknown' ? starship.costInCredits : Number(starship.costInCredits).toLocaleString("en-US")}</td>
     </tr>
   )
 }

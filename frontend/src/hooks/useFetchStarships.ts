@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import type { Starship } from "../types/starship.dto"
-import starShipsApi from "../services/starshipService"
+import starshipsApi from "../services/starshipService"
 
 export const useFetchStarships = () => {
   const [starships, setStarships] = useState<Starship[]>([])
@@ -11,7 +11,7 @@ export const useFetchStarships = () => {
     setLoading(true)
     setError(null)
     try {
-      const starships = await starShipsApi.getStarships()
+      const starships = await starshipsApi.getStarships()
       setStarships(starships)
     } catch (err: any) {
       setError(err.message || "Failed to fetch starships")

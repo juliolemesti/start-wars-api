@@ -1,50 +1,30 @@
 import type React from 'react'
-import type { Starship } from '../types/starship.dto'
 import { StarshipList } from '../components/starship/starshipList'
 import { useFetchStarships } from '../hooks/useFetchStarships'
 import { useEffect } from 'react'
+import { useAuthContext } from '../context/AuthContext'
 
 export const StarshipsPage: React.FC = () => {
   const { starships, fetchStarships } = useFetchStarships()
+  const { logout } = useAuthContext()
 
   useEffect(() => {
     fetchStarships()
   }, [fetchStarships])
 
   return (
-    <div className='max-w-[1200px] mx-auto px-4'>
-      <h1 className='text-3xl font-bold underline mt-10 mb-10'>Starships</h1>
+    <div>
+      <div className="flex justify-between items-center mb-10">
+        <h1 className="text-3xl font-bold underline">Starships</h1>
+        <button
+          onClick={logout}
+          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+        >
+          Logout
+        </button>
+      </div>
 
       <StarshipList starships={starships} />
     </div>
   )
 }
-
-// // Mock data for demonstration
-// const starships: Starship[] = [
-//   {
-//     id: 1,
-//     name: "Millennium Falcon",
-//     model: "YT-1300",
-//     manufacturer: "Corellian Engineering Corporation",
-//     starshipClass: "Light freighter",
-//     costInCredits: "100000"
-//   },
-//   {
-//     id: 2,
-//     name: "X-wing",
-//     model: "T-65B",
-//     manufacturer: "Incom Corporation",
-//     starshipClass: "Starfighter",
-//     costInCredits: "149999"
-//   },
-//   {
-//     id: 3,
-//     name: "TIE Fighter",
-//     model: "Twin Ion Engine",
-//     manufacturer: "Sienar Fleet Systems",
-//     starshipClass: "Starfighter",
-//     costInCredits: "75000"
-//   }
-//   // ...add more starships as needed
-// ]
