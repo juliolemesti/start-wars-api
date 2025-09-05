@@ -12,6 +12,18 @@ builder.Services.AddHttpClient<SwapiClient>(client =>
     client.BaseAddress = new Uri("https://swapi.tech/api/");
 });
 
+// Configure CORS for frontend
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy("AllowFrontend",
+    policy =>
+    {
+      policy.WithOrigins("http://localhost:5173")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
+    });
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -22,6 +34,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseCors("AllowFrontend");
 app.MapControllers();
 
 app.Run();

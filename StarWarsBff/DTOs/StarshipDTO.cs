@@ -7,4 +7,5 @@ public class StarshipDto
   public string Model { get; set; } = string.Empty;
   public string Manufacturer { get; set; } = string.Empty;
   public string StarshipClass { get; set; } = string.Empty;
+  public string CostInCredits { get; set; } = string.Empty;
 }

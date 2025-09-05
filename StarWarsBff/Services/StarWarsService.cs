@@ -25,7 +25,8 @@ public class StarWarsService : IStarWarsService
         Name = starship["properties"]?["name"]?.ToString() ?? "",
         Model = starship["properties"]?["model"]?.ToString() ?? "",
         Manufacturer = starship["properties"]?["manufacturer"]?.ToString() ?? "",
-        StarshipClass = starship["properties"]?["starship_class"]?.ToString() ?? ""
+        StarshipClass = starship["properties"]?["starship_class"]?.ToString() ?? "",
+        CostInCredits = starship["properties"]?["cost_in_credits"]?.ToString() ?? ""
       });
     }
 
