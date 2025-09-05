@@ -24,19 +24,19 @@ public class StarWarsService : IStarWarsService
     while (!string.IsNullOrEmpty(nextUrl))
     {
 
-      var response = await _swapiClient.GetAsync<JsonObject>(nextUrl);
+      var response = await _swapiClient.GetAsync<SwapiResponse<SwapiStarship>>(nextUrl);
 
-      if (response?["results"] is JsonArray starshipArray)
+
+      if (response?.Results is { Count: > 0 })
       {
-
-        allStarships.AddRange(starshipArray.Select(starship => new StarshipDto
+        allStarships.AddRange(response.Results.Select(s => new StarshipDto
         {
-          Id = int.Parse(starship["uid"]?.ToString() ?? "0"),
-          Name = starship["properties"]?["name"]?.ToString() ?? "",
-          Model = starship["properties"]?["model"]?.ToString() ?? "",
-          Manufacturer = starship["properties"]?["manufacturer"]?.ToString() ?? "",
-          StarshipClass = starship["properties"]?["starship_class"]?.ToString() ?? "",
-          CostInCredits = starship["properties"]?["cost_in_credits"]?.ToString() ?? ""
+          Id = int.Parse(s.Uid),
+          Name = s.Properties.Name,
+          Model = s.Properties.Model,
+          Manufacturer = s.Properties.Manufacturer,
+          StarshipClass = s.Properties.Starship_Class,
+          CostInCredits = s.Properties.Cost_In_Credits
         }));
       }
       else
@@ -44,7 +44,7 @@ public class StarWarsService : IStarWarsService
         _logger.LogWarning("No starships found on this page.");
       }
 
-      nextUrl = response?["next"]?.ToString();
+      nextUrl = response?.Next;
     }
 
 
