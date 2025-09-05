@@ -7,8 +7,6 @@ import { useAuthContext } from "./context/AuthContext";
 export const ApplicationRouterProvider = () => {
   const { isAuthenticated } = useAuthContext()
 
-  console.log('ApplicationRouterProvider isAuthenticated', isAuthenticated)
-
   const router = createBrowserRouter([
     {
       path: "/",
